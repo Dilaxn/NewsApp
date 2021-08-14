@@ -8,7 +8,9 @@ const deviceWidth = Dimensions.get('window').width;
 
 class ProvinceNews extends Component {
     state = {
-        news: []
+        news: [],
+        provinces:[{name:"Central Province",url:"https://www.google.com"},{name:"Northern Province",url:"https://www.google.com"},{name:"Estern Province",url:"https://www.google.com"},
+            {name:"Western Province",url:"https://www.google.com"}]
     }
 
     componentDidMount() {
@@ -27,24 +29,24 @@ class ProvinceNews extends Component {
             <View style={{backgroundColor: 'white'}}>
                 {/*<Text style={{fontSize:20}}>Heading1</Text>*/}
                 {
-                    this.state.news.length === 0 ?
-                        (<ActivityIndicator size="large" color="#0000ff"/>) : (
+
+                       (
                             <ScrollView horizontal={true} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                                 {
-                                    this.state.news.map((news, index) => (
-                                        news.urlToImage ?
+                                    this.state.provinces.map((province, index) => (
+
                                             <TouchableOpacity  key={index}
                                                                onPress={() => this.props.navigation.navigate('Name', {
-                                                                   url: news.url,
+                                                                   url: province.url,
                                                                })}
                                             >
                                                 <View style={{
                                                     margin: 10,flex: 1,
                                                     justifyContent: 'flex-end',
                                                 }}>
-                                                    <Image source={{uri: `${news.urlToImage}`}}
+                                                    <Image source={{uri: `${'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Colombo_City%2C_Sri_Lanka.jpg/2560px-Colombo_City%2C_Sri_Lanka.jpg'}`}}
                                                            style={{
-                                                               height: deviceHeight / 2,
+                                                               height: deviceHeight / 4,
                                                                width: deviceWidth,
                                                                borderRadius: 20
                                                            }}/>
@@ -68,11 +70,11 @@ class ProvinceNews extends Component {
                                                             width: deviceWidth - 10,
                                                             padding: 'auto',
                                                             textAlign: 'center'
-                                                        }}>{news.title}</Text>
+                                                        }}>{province.name}</Text>
                                                     </View>
                                                 </View>
                                             </TouchableOpacity>
-                                            : null
+
                                     ))
 
                                 }
