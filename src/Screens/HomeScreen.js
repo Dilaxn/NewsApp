@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import Categories from "../Components/Categories";
 import TrendingNews from "../Components/TrendingNews";
-import {View,Text,ActivityIndicator,TouchableOpacity,ScrollView,Image,Dimensions} from 'react-native';
+import {View, Text, ActivityIndicator, TouchableOpacity, ScrollView, Image, Dimensions, Button} from 'react-native';
 import config from "../../config/config";
 import ProvinceNews from "../Components/ProvinceNews";
 
@@ -26,9 +26,15 @@ class HomeScreen extends Component {
     }
 
     render() {
+        const { navigation } = this.props;
         return(
             <View style={{backgroundColor:'white'}} >
-
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <Button
+                        onPress={() => navigation.navigate('Notifications')}
+                        title="Go to notifications"
+                    />
+                </View>
                 <Categories navigation={this.props.navigation}/>
                 <ScrollView >
                 <TrendingNews o navigation={this.props.navigation}/>

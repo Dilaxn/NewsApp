@@ -1,16 +1,36 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from "./src/Screens/HomeScreen";
 import GetNews from "./src/Screens/GetNews";
 import WebViewComponent from "./src/Components/WebView";
-import { Icon } from 'react-native-elements'
-const Stack = createNativeStackNavigator();
 
-function App() {
+import { Icon } from 'react-native-elements'
+import {DrawerActions as navigation} from "@react-navigation/routers/src/DrawerRouter";
+const Stack = createNativeStackNavigator();
+const Drawer = createNativeStackNavigator();
+import {
+    createDrawerNavigator,
+    DrawerContentScrollView,
+    DrawerItemList,
+    DrawerItem,
+} from '@react-navigation/drawer';
+
+
+
+function Root() {
+    return (
+        <Drawer.Navigator>
+            <Drawer.Screen name="Home" component={HomeScreen} />
+            <Drawer.Screen name="Profile" component={HomeScreen} />
+            <Stack.Screen name="Settings" component={HomeScreen} />
+        </Drawer.Navigator>
+    );
+}
+function App(navigation) {
   return (
       <NavigationContainer>
         <Stack.Navigator>
@@ -22,7 +42,7 @@ function App() {
                           name='bars'
                           type='font-awesome'
                           color='#000'
-                          onPress={() => console.log('hello')} />
+                          onPress={() =>navigation.toggleDrawer} />
                   </View>
               ),
           }} component={HomeScreen} />
@@ -33,7 +53,7 @@ function App() {
                           name='bars'
                           type='font-awesome'
                           color='#000'
-                          onPress={() => console.log('hello')} />
+                          onPress={() =>navigation.toggleDrawer}/>
                   </View>
               ),
           }} component={GetNews}/>

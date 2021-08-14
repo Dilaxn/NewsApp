@@ -52,11 +52,10 @@ class TrendingNews extends Component {
 
                                                     <View style={{
                                                         position: 'absolute',
-                                                        height: 80,
+                                                        height: 2*deviceWidth/3,
                                                         left: 0,
                                                         justifyContent: 'center',
-                                                        borderBottomLeftRadius: 20,
-                                                        borderBottomRightRadius: 20,
+                                                        borderRadius: 20,
                                                         width: deviceWidth,
                                                         backgroundColor: 'rgba(0,0,0,0.4)'
                                                     }}>
