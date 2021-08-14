@@ -46,26 +46,26 @@ class ProvinceNews extends Component {
                                                 }}>
                                                     <Image source={{uri: `${'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Colombo_City%2C_Sri_Lanka.jpg/2560px-Colombo_City%2C_Sri_Lanka.jpg'}`}}
                                                            style={{
-                                                               height: deviceHeight / 4,
+                                                               height: deviceWidth/3,
                                                                width: deviceWidth,
                                                                borderRadius: 20
                                                            }}/>
 
                                                     <View style={{
                                                         position: 'absolute',
-                                                        height: 80,
+                                                        height: deviceWidth/3,
                                                         left: 0,
                                                         justifyContent:'center',
-                                                        borderBottomLeftRadius:20,
-                                                        borderBottomRightRadius:20,
+                                                        borderRadius: 20,
                                                         width: deviceWidth,
                                                         backgroundColor: 'rgba(0,0,0,0.4)'
                                                     }}>
                                                         <Text style={{
                                                             position: 'absolute',
                                                             color: "white",
-
-                                                            fontWeight: "bold",
+fontSize:"30px",
+                                                            fontFamily:"Didot",
+                                                            fontWeight: "700",
 
                                                             width: deviceWidth - 10,
                                                             padding: 'auto',

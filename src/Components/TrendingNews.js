@@ -29,22 +29,23 @@ class TrendingNews extends Component {
                 {
                     this.state.news.length === 0 ?
                         (<ActivityIndicator size="large" color="#0000ff"/>) : (
-                            <ScrollView horizontal={true} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+                            <ScrollView horizontal={true} showsVerticalScrollIndicator={false}
+                                        showsHorizontalScrollIndicator={false}>
                                 {
                                     this.state.news.map((news, index) => (
                                         news.urlToImage ?
-                                            <TouchableOpacity  key={index}
+                                            <TouchableOpacity key={index}
                                                               onPress={() => this.props.navigation.navigate('Name', {
                                                                   url: news.url,
                                                               })}
                                             >
                                                 <View style={{
-                                                    margin: 10,flex: 1,
+                                                    margin: 10, flex: 1,
                                                     justifyContent: 'flex-end',
                                                 }}>
                                                     <Image source={{uri: `${news.urlToImage}`}}
                                                            style={{
-                                                               height: deviceHeight / 2,
+                                                               height: 2*deviceWidth/3,
                                                                width: deviceWidth,
                                                                borderRadius: 20
                                                            }}/>
@@ -53,9 +54,9 @@ class TrendingNews extends Component {
                                                         position: 'absolute',
                                                         height: 80,
                                                         left: 0,
-justifyContent:'center',
-                                                        borderBottomLeftRadius:20,
-                                                        borderBottomRightRadius:20,
+                                                        justifyContent: 'center',
+                                                        borderBottomLeftRadius: 20,
+                                                        borderBottomRightRadius: 20,
                                                         width: deviceWidth,
                                                         backgroundColor: 'rgba(0,0,0,0.4)'
                                                     }}>
