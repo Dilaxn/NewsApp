@@ -3,6 +3,7 @@ import Categories from "../Components/Categories";
 import TrendingNews from "../Components/TrendingNews";
 import {View,Text,ActivityIndicator,TouchableOpacity,ScrollView,Image,Dimensions} from 'react-native';
 import config from "../../config/config";
+import ProvinceNews from "../Components/ProvinceNews";
 
 
 
@@ -31,6 +32,7 @@ class HomeScreen extends Component {
                 <Categories navigation={this.props.navigation}/>
                 <ScrollView >
                 <TrendingNews o navigation={this.props.navigation}/>
+                    <ProvinceNews o navigation={this.props.navigation}/>
                 <View >
                     {
                         this.state.news.length === 0 ?
