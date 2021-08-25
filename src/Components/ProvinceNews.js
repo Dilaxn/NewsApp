@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
 import {View, Text, ActivityIndicator, TouchableOpacity, ScrollView, Image, Dimensions} from 'react-native';
 import config from "../../config/config";
-
-
+import western from "../Images/Provinces/western.jpg"
+import central from "../Images/Provinces/central.jpg"
+import northern from "../Images/Provinces/northern.jpeg"
+import eastern from "../Images/Provinces/eastern.jpg"
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 
 class ProvinceNews extends Component {
     state = {
         news: [],
-        provinces:[{name:"Central Province",url:"https://www.google.com"},{name:"Northern Province",url:"https://www.google.com"},{name:"Estern Province",url:"https://www.google.com"},
-            {name:"Western Province",url:"https://www.google.com"}]
+        provinces:[{name:"Central Province",url:"https://www.google.com",img:central},  {name:"Western Province",url:"https://www.google.com",img:western},{name:"Northern Province",url:"https://www.google.com",img:northern},{name:"Estern Province",url:"https://www.google.com",img:eastern},
+          ]
     }
 
     componentDidMount() {
@@ -41,13 +43,13 @@ class ProvinceNews extends Component {
                                                                })}
                                             >
                                                 <View style={{
-                                                    margin: 10,flex: 1,
+                                                    margin: 5,flex: 1,
                                                     justifyContent: 'flex-end',
                                                 }}>
-                                                    <Image source={{uri: `${'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Colombo_City%2C_Sri_Lanka.jpg/2560px-Colombo_City%2C_Sri_Lanka.jpg'}`}}
+                                                    <Image source={province.img}
                                                            style={{
                                                                height: deviceWidth/3,
-                                                               width: deviceWidth,
+                                                               width: deviceWidth/2-15,
                                                                borderRadius: 20
                                                            }}/>
 
@@ -57,7 +59,7 @@ class ProvinceNews extends Component {
                                                         left: 0,
                                                         justifyContent:'center',
                                                         borderRadius: 20,
-                                                        width: deviceWidth,
+                                                        width: deviceWidth/2-15,
                                                         backgroundColor: 'rgba(0,0,0,0.4)'
                                                     }}>
                                                         <Text style={{
@@ -67,7 +69,7 @@ fontSize:"30px",
                                                             fontFamily:"Didot",
                                                             fontWeight: "700",
 
-                                                            width: deviceWidth - 10,
+                                                            width: deviceWidth/2 - 10,
                                                             padding: 'auto',
                                                             textAlign: 'center'
                                                         }}>{province.name}</Text>

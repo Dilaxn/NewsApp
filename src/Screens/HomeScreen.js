@@ -4,6 +4,7 @@ import TrendingNews from "../Components/TrendingNews";
 import {View, Text, ActivityIndicator, TouchableOpacity, ScrollView, Image, Dimensions, Button} from 'react-native';
 import config from "../../config/config";
 import ProvinceNews from "../Components/ProvinceNews";
+import Footer from "../Components/Footer";
 
 
 
@@ -35,8 +36,8 @@ class HomeScreen extends Component {
                         title="Go to notifications"
                     />
                 </View>
-                <Categories navigation={this.props.navigation}/>
-                <ScrollView >
+                <Categories style={{height: 0.3*deviceHeight}} navigation={this.props.navigation}/>
+                <ScrollView style={{height:0.76*deviceHeight}} >
                 <TrendingNews o navigation={this.props.navigation}/>
                     <ProvinceNews o navigation={this.props.navigation}/>
                 <View >
@@ -59,7 +60,14 @@ class HomeScreen extends Component {
                                                         <Image source={{uri: `${news.urlToImage}`}}
                                                                style={{height: 100, width: 100, borderRadius: 10}}/>
                                                         <Text style={{ textAlign: 'justify',width:deviceWidth-130,paddingLeft:10}}>{news.title}</Text>
-                                                    </View></TouchableOpacity> : null
+                                                    </View>
+                                                    <View
+                                                        style={{marginBottom:10,marginTop:10,
+                                                            borderBottomColor: 'black',
+                                                            borderBottomWidth: 0.5,opacity:0.5
+                                                        }}
+                                                    />
+                                                </TouchableOpacity> : null
                                         ))
 
                                     }
@@ -68,6 +76,7 @@ class HomeScreen extends Component {
                     }
                 </View>
                 </ScrollView>
+<Footer/>
             </View>
         );
     }

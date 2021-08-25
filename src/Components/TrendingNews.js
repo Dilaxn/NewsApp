@@ -46,7 +46,7 @@ class TrendingNews extends Component {
                                                     <Image source={{uri: `${news.urlToImage}`}}
                                                            style={{
                                                                height: 2*deviceWidth/3,
-                                                               width: deviceWidth,
+                                                               width: deviceWidth-10,
                                                                borderRadius: 20
                                                            }}/>
 
@@ -55,8 +55,8 @@ class TrendingNews extends Component {
                                                         height: 2*deviceWidth/3,
                                                         left: 0,
                                                         justifyContent: 'center',
-                                                        borderRadius: 20,
-                                                        width: deviceWidth,
+                                                        borderRadius: 30,
+                                                        width: deviceWidth-10,
                                                         backgroundColor: 'rgba(0,0,0,0.4)'
                                                     }}>
                                                         <Text style={{
