@@ -45,32 +45,35 @@ class ProvinceNews extends Component {
                                                 <View style={{
                                                     margin: 5,flex: 1,
                                                     justifyContent: 'flex-end',
+                                                    width: deviceWidth/3,
                                                 }}>
                                                     <Image source={province.img}
                                                            style={{
-                                                               height: deviceWidth/3,
-                                                               width: deviceWidth/2-15,
-                                                               borderRadius: 20
+                                                               height: deviceWidth/5,
+                                                               width: deviceWidth/3,
+                                                               borderRadius: 10
                                                            }}/>
 
                                                     <View style={{
                                                         position: 'absolute',
-                                                        height: deviceWidth/3,
+                                                        height: deviceWidth/5,
                                                         left: 0,
+                                                        padding: 10,
                                                         justifyContent:'center',
-                                                        borderRadius: 20,
-                                                        width: deviceWidth/2-15,
+                                                        borderRadius: 10,
+                                                        width: deviceWidth/3,
                                                         backgroundColor: 'rgba(0,0,0,0.4)'
                                                     }}>
-                                                        <Text style={{
+                                                        <Text  style={{
                                                             position: 'absolute',
                                                             color: "white",
-fontSize:"30px",
-                                                            fontFamily:"Didot",
-                                                            fontWeight: "700",
+fontSize:"20px",
 
-                                                            width: deviceWidth/2 - 10,
-                                                            padding: 'auto',
+                                                            fontFamily:"georgia",
+                                                            fontWeight: "300",
+
+                                                            width: deviceWidth/3,
+                                                            padding: 5,
                                                             textAlign: 'center'
                                                         }}>{province.name}</Text>
                                                     </View>

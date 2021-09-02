@@ -25,7 +25,7 @@ class Categories extends Component {
                     })}
                     >
                     <View  >
-                    <Text style={{padding:12,borderWidth:0.6,borderColor:'black',fontSize:'15',borderRadius:20,
+                    <Text style={{padding:12,fontWeight:'bold', fontSize:15,borderRadius:10,
                         margin:5,}}> {category}</Text>
                     </View>
                     </TouchableOpacity>

@@ -35,40 +35,54 @@ class TrendingNews extends Component {
                                     this.state.news.map((news, index) => (
                                         news.urlToImage ?
                                             <TouchableOpacity key={index}
-                                                              onPress={() => this.props.navigation.navigate('Name', {
+                                                              onPress={() => this.props.navigation.navigate('WebSite', {
                                                                   url: news.url,
+                                                                  img:news.urlToImage
                                                               })}
                                             >
                                                 <View style={{
-                                                    margin: 10, flex: 1,
+                                                    margin: 5, flex: 1,
                                                     justifyContent: 'flex-end',
+
                                                 }}>
                                                     <Image source={{uri: `${news.urlToImage}`}}
                                                            style={{
-                                                               height: 2*deviceWidth/3,
-                                                               width: deviceWidth-10,
-                                                               borderRadius: 20
+                                                               height: deviceHeight/2,
+                                                               width: 7*deviceWidth/10,
+                                                               borderRadius: 20,
+                                                               margin:3,
+
                                                            }}/>
 
                                                     <View style={{
                                                         position: 'absolute',
-                                                        height: 2*deviceWidth/3,
+                                                        height: deviceHeight/2,
                                                         left: 0,
+
                                                         justifyContent: 'center',
-                                                        borderRadius: 30,
-                                                        width: deviceWidth-10,
+                                                        borderRadius: 20,
+                                                        width: 7*deviceWidth/10,
                                                         backgroundColor: 'rgba(0,0,0,0.4)'
                                                     }}>
-                                                        <Text style={{
+                                                        <View style={{
+                                                            position: 'absolute',
+                                                            height: deviceWidth/3,
+                                                            justifyContent: 'center',
+                                                            borderRadius: 20,
+                                                            bottom:0,
+                                                            width: 7*deviceWidth/10,
+                                                        }}>
+                                                        <Text   numberOfLines={2} style={{
                                                             position: 'absolute',
                                                             color: "white",
+fontWeight:"bold",
 
-                                                            fontWeight: "bold",
+                                                            width: 7*deviceWidth/10,
+                                                            padding: 5,
 
-                                                            width: deviceWidth - 10,
-                                                            padding: 'auto',
                                                             textAlign: 'center'
                                                         }}>{news.title}</Text>
+                                                        </View>
                                                     </View>
                                                 </View>
                                             </TouchableOpacity>

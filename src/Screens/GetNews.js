@@ -33,20 +33,108 @@ componentDidMount() {
                             <ScrollView horizontal={false} showHorizontalScrollIndicator={false}>
                                 {
                                     this.state.news.map((news, index) => (
-                                        news.urlToImage ?
+                                        (index===0)?(news.urlToImage ?
                                             <TouchableOpacity key={index}
-                                            onPress={()=>this.props.navigation.navigate('Name',{
-                                                url:news.url,
-                                            })}
+                                                              onPress={()=>this.props.navigation.navigate('Name',{
+                                                                  url:news.url,
+                                                                  img:news.urlToImage
+                                                              })}
                                             >
-                                            <View style={{margin: 10,
-                                        alignItems:'center',}}  display="flex" flexDirection="row"
+                                                <View style={{
+                                                  flex: 1,
+                                                    justifyContent: 'flex-end',
+                                                }}>
+                                                    <Image source={{uri: `${news.urlToImage}`}}
+                                                           style={{
+                                                               height: deviceHeight/3,
+                                                               width: deviceWidth,
+                                                               borderRadius: 0
+                                                           }}/>
 
-                                        >
-                                            <Image source={{uri: `${news.urlToImage}`}}
-                                                   style={{height: 100, width: 100, borderRadius: 10}}/>
-                                            <Text style={{ textAlign: 'justify',width:deviceWidth-130,paddingLeft:10}}>{news.title}</Text>
-                                        </View></TouchableOpacity> : null
+                                                    <View style={{
+                                                        position: 'absolute',
+                                                        height: deviceHeight/3,
+                                                        left: 0,
+                                                        justifyContent: 'center',
+                                                        borderRadius: 0,
+                                                        width: deviceWidth,
+                                                        backgroundColor: 'rgba(0,0,0,0.4)'
+                                                    }}>
+                                                        <View style={{
+                                                            position: 'absolute',
+                                                            height: deviceHeight/6,
+                                                            bottom: 0,
+                                                            justifyContent: 'center',
+                                                            borderRadius:0,
+                                                            width: deviceWidth,
+
+                                                        }}>
+                                                            <Text style={{
+                                                                paddingLeft:5,
+                                                                color: "white",
+
+                                                            }}>
+                                                            <Text style={{
+
+                                                                color: "white",
+
+                                                                fontWeight: "600",
+
+
+
+
+                                                                border: '3px red',
+                                                                borderWidth:2,
+                                                            }} >{this.props.route.params.category}</Text>
+                                                            </Text>
+                                                            <Text   numberOfLines={2} style={{
+
+                                                                color: "white",
+
+                                                                fontWeight: "bold",
+
+                                                                width: deviceWidth,
+                                                                padding: 5,
+
+                                                                textAlign: 'justify'
+                                                            }}>{news.title}</Text>
+
+                                                            <Text   numberOfLines={1} style={{
+
+                                                                color: "white",
+
+                                                                fontWeight: "300",
+
+                                                                width: deviceWidth,
+                                                                paddingLeft: 5,
+marginBottom:0,
+                                                                textAlign: 'left'
+                                                            }}>21 Aug 2021</Text>
+                                                        </View>
+                                                    </View>
+                                                </View></TouchableOpacity> : null):(news.urlToImage ?
+                                            <TouchableOpacity key={index}
+                                                              onPress={()=>this.props.navigation.navigate('Name',{
+                                                                  url:news.url,
+                                                              })}
+                                            >
+                                                <View style={{margin: 10,
+                                                    alignItems:'center',}}  display="flex" flexDirection="row"
+
+                                                >
+                                                    <Image source={{uri: `${news.urlToImage}`}}
+                                                           style={{height: deviceHeight/4, width: 2*deviceWidth/5-30, borderRadius: 10}}/>
+                                                    <View style={{height: deviceHeight/6, textAlign: 'justify',width:3*deviceWidth/5,paddingLeft:10,justifyContent:"center"}}>
+
+                                                        <Text style={{fontFamily:"Times New Roman",}} >Channel</Text>
+                                                        <Text numberOfLines={2} style={{paddingTop:5,fontWeight:'bold'}}>{news.title}</Text>
+                                                        <Text numberOfLines={3}  style={{paddingTop:5,fontWeight:'300'}}>An enthusiastic, self-motivated, responsible and hardworking undergraduate student with excellent communication skills, willing to take-up new challenges and work in a challenging environment.</Text>
+                                                        <Text style={{paddingTop:5}}>21 Aug 2021</Text>
+
+                                                    </View>
+
+                                                </View></TouchableOpacity> : null)
+
                                     ))
 
                                 }

@@ -57,7 +57,7 @@ function App(navigation) {
                   </View>
               ),
           }} component={GetNews}/>
-            <Stack.Screen name="Name" options={{
+            <Stack.Screen name="WebSite" options={{
                 headerRight: () => (
                     <View style={{paddingRight:5}}>
                         <Icon
