@@ -1,77 +1,190 @@
-// In App.js in a new project
-
 import * as React from 'react';
-import { View, Text,Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from "./src/Screens/HomeScreen";
-import GetNews from "./src/Screens/GetNews";
-import WebViewComponent from "./src/Components/WebView";
-
-import { Icon } from 'react-native-elements'
-import {DrawerActions as navigation} from "@react-navigation/routers/src/DrawerRouter";
-const Stack = createNativeStackNavigator();
-const Drawer = createNativeStackNavigator();
+import {View, Text, Button, Image} from 'react-native';
+import {NavigationContainer, DrawerActions} from '@react-navigation/native';
 import {
     createDrawerNavigator,
     DrawerContentScrollView,
     DrawerItemList,
     DrawerItem,
 } from '@react-navigation/drawer';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import {StackActions} from '@react-navigation/native';
+import {Icon} from "react-native-elements";
+import GetNews from "./src/Screens/GetNews";
+import WebViewComponent from "./src/Components/WebView";
+import HomeScreen from "./src/Screens/HomeScreen";
+
+const Stack = createNativeStackNavigator();
+import Avatar from "./src/Images/Avatar.png"
+import Provinces from "./src/Components/Provinces";
+import GetProvince from "./src/Screens/GetProvince";
+import Profile from "./src/Components/Profile";
+import LocalNews from "./src/Components/LocalNews";
 
 
-
-function Root() {
+function Feed({navigation}) {
     return (
-        <Drawer.Navigator>
-            <Drawer.Screen name="Home" component={HomeScreen} />
-            <Drawer.Screen name="Profile" component={HomeScreen} />
-            <Stack.Screen name="Settings" component={HomeScreen} />
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text>Feed Screen</Text>
+            <Button
+                title="Open drawer"
+                onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+            />
+            <Button
+                title="Toggle drawer"
+                onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+            />
+        </View>
+    );
+}
+
+function Notifications() {
+    return (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text>Notifications Screen</Text>
+        </View>
+    );
+}
+
+function CustomDrawerContent(props) {
+    return (
+        <DrawerContentScrollView {...props}>
+            <View style={{flex: 1, flexDirection: 'row'}}>
+                <View style={{flex: 2}} alignItems="center">
+                    <Image
+                        style={{
+                            width: 80,
+                            height: 80,
+
+                            borderWidth: 0,
+                            borderRadius: 75
+                        }}
+                        source={Avatar}
+                        resizeMode={"cover"} // <- needs to be "cover" for borderRadius to take effect on Android
+                    />
+                </View>
+                <View style={{flex: 3}} alignItems="left" align='center'>
+                    <Text style={{margin: 5, fontSize: 18, fontWeight: 'bold', paddingTop: '10%'}}>
+                        Dilaxn
+                    </Text>
+                    <Text style={{marginLeft: 5, fontSize: 14}}>
+                        dilaxn@gmail.com
+                    </Text>
+                </View>
+            </View>
+            <DrawerItemList    {...props} />
+            {/*<DrawerItem*/}
+            {/*    label="C"*/}
+            {/*    labelStyle={{fontSize:20}}*/}
+            {/*    onPress={() => props.navigation.dispatch(Notifications)}*/}
+            {/*/>*/}
+
+            {/*<DrawerItem*/}
+            {/*    label="Toggle drawer"*/}
+            {/*    labelStyle={{fontSize:20}}*/}
+            {/*    onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}*/}
+            {/*/>*/}
+        </DrawerContentScrollView>
+    );
+}
+
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+    return (
+        <Drawer.Navigator drawerContentOptions={{activeTintColor: 'red'}} screenOptions={{
+            headerShown: false,
+        }}
+                          drawerContent={(props) => <CustomDrawerContent labelStyle={{fontSize: 20}} {...props} />}
+        >
+            <Drawer.Screen name="My Interests" component={Provinces}/>
+            <Drawer.Screen name="World News"  component={StachNav}/>
+            <Drawer.Screen name="Local News" component={StachNav} />
+
+            <Drawer.Screen name="Provinces" component={Provinces} />
+
+            <Drawer.Screen name="Profile" component={Profile}/>
+            <Drawer.Screen name="Feedback" component={Provinces}/>
+            <Drawer.Screen name="Contact Us" component={Provinces}/>
         </Drawer.Navigator>
     );
 }
-function App(navigation) {
-  return (
-      <NavigationContainer>
+
+function StachNav(props) {
+    console.log(props.initialParams)
+    return (
         <Stack.Navigator>
 
-          <Stack.Screen name="Trending" options={{
-              headerLeft: () => (
-                  <View style={{paddingLeft:5}}>
-                      <Icon
-                          name='bars'
-                          type='font-awesome'
-                          color='#000'
-                          onPress={() =>navigation.toggleDrawer} />
-                  </View>
-              ),
-          }} component={HomeScreen} />
-          <Stack.Screen name="GetNews" options={{
-              headerRight: () => (
-                  <View style={{paddingRight:5}}>
-                      <Icon
-                          name='bars'
-                          type='font-awesome'
-                          color='#000'
-                          onPress={() =>navigation.toggleDrawer}/>
-                  </View>
-              ),
-          }} component={GetNews}/>
-            <Stack.Screen name="WebSite" options={{
-                headerRight: () => (
-                    <View style={{paddingRight:5}}>
+            <Stack.Screen name='Trends' options={{
+                headerLeft: () => (
+                    <View style={{paddingRight: 5}}>
                         <Icon
                             name='bars'
                             type='font-awesome'
                             color='#000'
-                            onPress={() => console.log('hello')} />
+                            onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}/>
                     </View>
                 ),
-            }}  component={WebViewComponent} />
+            }} component={HomeScreen} />
+            <Stack.Screen name="GetNews" options={{
+                headerRight: () => (
+                    <View style={{paddingRight: 5}}>
+                        <Icon
+                            name='bars'
+                            type='font-awesome'
+                            color='#000'
+                            onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}/>
+                    </View>
+                ),
+            }} component={GetNews}/>
+
+            <Stack.Screen name="GetProvince" options={{
+                headerRight: () => (
+                    <View style={{paddingRight: 5}}>
+                        <Icon
+                            name='bars'
+                            type='font-awesome'
+                            color='#000'
+                            onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}/>
+                    </View>
+                ),
+            }} component={GetProvince}/>
+            <Stack.Screen name="WebSite" options={{
+                headerRight: () => (
+                    <View style={{paddingRight: 5}}>
+                        <Icon
+                            name='bars'
+                            type='font-awesome'
+                            color='#000'
+                            onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}/>
+                    </View>
+                ),
+            }} component={WebViewComponent}/>
+
+
+            <Stack.Screen name='Provinces' options={{
+                headerLeft: () => (
+                    <View style={{paddingRight: 5}}>
+                        <Icon
+                            name='bars'
+                            type='font-awesome'
+                            color='#000'
+                            onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}/>
+                    </View>
+                ),
+            }} component={Provinces}/>
 
         </Stack.Navigator>
-      </NavigationContainer>
-  );
+    )
+        ;
 }
 
-export default App;
+
+export default function App() {
+    return (
+        <NavigationContainer>
+            <MyDrawer/>
+        </NavigationContainer>
+    );
+}

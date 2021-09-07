@@ -5,7 +5,8 @@ import {View, Text, ActivityIndicator, TouchableOpacity, ScrollView, Image, Dime
 import config from "../../config/config";
 import ProvinceNews from "../Components/ProvinceNews";
 import Footer from "../Components/Footer";
-
+import cen from '../Images/Provinces/central.jpg'
+import Top from "../Components/Top";
 
 
 const deviceHeight =Dimensions.get('window').height;
@@ -16,7 +17,7 @@ class HomeScreen extends Component {
     }
 
     componentDidMount() {
-        fetch('https://newsapi.org/v2/top-headlines?country=in&apiKey=c13110ac02d946fa8fc640f47303c903').then(
+        fetch('https://newsapi.org/v2/top-headlines?country=in&apiKey=db00e5c555514d6ca6d00fb0513d40aa').then(
             res => res.json()
         ).then(response => {
             this.setState({
@@ -28,6 +29,7 @@ class HomeScreen extends Component {
 
     render() {
         const { navigation } = this.props;
+        console.log(this.props)
         return(
             <View style={{backgroundColor:'white'}} >
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -41,10 +43,12 @@ class HomeScreen extends Component {
                     <Text style={{margin:10,fontSize:40,fontWeight:"bold"}}>Explore Today's World News</Text>
 
                     <TrendingNews o navigation={this.props.navigation}/>
+
+{/*<Top o navigation={this.props.navigation}/>*/}
                     <Text style={{margin:10,fontSize:20,fontWeight:"bold"}}>Explore Today's Local News</Text>
 
                     {/*<ProvinceNews o navigation={this.props.navigation}/>*/}
-                <View >
+                <View>
                     {
                         this.state.news.length === 0 ?
                             (<ActivityIndicator size="large" color="#0000ff" style={{height:deviceHeight,width:deviceWidth,alignItems:'center'}} />) : (

@@ -6,7 +6,7 @@ import config from "../../config/config";
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 
-class TrendingNews extends Component {
+class LocalNews extends Component {
     state = {
         news: []
     }
@@ -73,16 +73,16 @@ class TrendingNews extends Component {
 
                                                             width: 7*deviceWidth/10,
                                                         }}>
-                                                        <Text   numberOfLines={2} style={{
+                                                            <Text   numberOfLines={2} style={{
 
-                                                            color: "white",
-fontWeight:"bold",flex:1,
+                                                                color: "white",
+                                                                fontWeight:"bold",flex:1,
 
-                                                            width: 7*deviceWidth/10,
-                                                            padding: 5,
+                                                                width: 7*deviceWidth/10,
+                                                                padding: 5,
 
-                                                            textAlign: 'center'
-                                                        }}>{news.title}</Text>
+                                                                textAlign: 'center'
+                                                            }}>{news.title}</Text>
                                                             <View style={{position:'absolute', flexDirection: 'row',width:deviceWidth-170}}>
                                                                 <Text style={{fontFamily:"Times New Roman",paddingLeft:10,fontWeight:'400',color:'white',}}>Channel</Text>
                                                                 <Text style={{fontFamily:"Times New Roman",fontWeight:'400',textAlign:"right",color:'white',}}>   |    21 Aug 2021</Text>
@@ -105,4 +105,4 @@ fontWeight:"bold",flex:1,
     }
 }
 
-export default TrendingNews;
+export default LocalNews;

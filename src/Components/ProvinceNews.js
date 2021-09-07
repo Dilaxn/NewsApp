@@ -16,7 +16,7 @@ class ProvinceNews extends Component {
     }
 
     componentDidMount() {
-        fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=c13110ac02d946fa8fc640f47303c903').then(
+        fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=db00e5c555514d6ca6d00fb0513d40aa').then(
             res => res.json()
         ).then(response => {
             this.setState({
