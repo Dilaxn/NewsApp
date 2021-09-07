@@ -21,6 +21,7 @@ import Provinces from "./src/Components/Provinces";
 import GetProvince from "./src/Screens/GetProvince";
 import Profile from "./src/Components/Profile";
 import LocalNews from "./src/Components/LocalNews";
+import MyInterests from "./src/Components/MyInterests";
 
 
 function Feed({navigation}) {
@@ -93,16 +94,17 @@ const Drawer = createDrawerNavigator();
 
 function MyDrawer() {
     return (
-        <Drawer.Navigator drawerContentOptions={{activeTintColor: 'red'}} screenOptions={{
+        <Drawer.Navigator screenOptions={{
             headerShown: false,
+            activeTintColor: 'red'
         }}
                           drawerContent={(props) => <CustomDrawerContent labelStyle={{fontSize: 20}} {...props} />}
         >
             <Drawer.Screen name="My Interests" component={Provinces}/>
-            <Drawer.Screen name="World News"  component={StachNav}/>
-            <Drawer.Screen name="Local News" component={StachNav} />
-
-            <Drawer.Screen name="Provinces" component={Provinces} />
+            <Drawer.Screen name="WorldNews"  component={StachNav}/>
+            <Drawer.Screen name="LocalNews" component={StachNav} />
+            <Drawer.Screen name="Interests" component={MyInterests} />
+            <Drawer.Screen name="Provinces" component={ProvinceScreen} />
 
             <Drawer.Screen name="Profile" component={Profile}/>
             <Drawer.Screen name="Feedback" component={Provinces}/>
@@ -112,7 +114,8 @@ function MyDrawer() {
 }
 
 function StachNav(props) {
-    console.log(props.initialParams)
+    console.log(props.route.name)
+    let x=props.route.name;
     return (
         <Stack.Navigator>
 
@@ -126,7 +129,7 @@ function StachNav(props) {
                             onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}/>
                     </View>
                 ),
-            }} component={HomeScreen} />
+            }} component={HomeScreen} initialParams={{ itemId: x }}/>
             <Stack.Screen name="GetNews" options={{
                 headerRight: () => (
                     <View style={{paddingRight: 5}}>
@@ -180,6 +183,30 @@ function StachNav(props) {
         ;
 }
 
+//Province Screen
+function ProvinceScreen(props) {
+    console.log(props.route.name)
+    let x=props.route.name;
+    return (
+        <Stack.Navigator>
+
+            <Stack.Screen name={x} options={{
+                headerLeft: () => (
+                    <View style={{paddingRight: 5}}>
+                        <Icon
+                            name='bars'
+                            type='font-awesome'
+                            color='#000'
+                            onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}/>
+                    </View>
+                ),
+            }} component={Provinces} initialParams={{ itemId: x }}/>
+
+
+        </Stack.Navigator>
+    )
+        ;
+}
 
 export default function App() {
     return (

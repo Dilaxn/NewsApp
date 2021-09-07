@@ -15,7 +15,6 @@ function Provinces(props)  {
 
     return(
         <View  style={{justifyContent:'center',alignItems: 'center',flex:1,flexDirection:'column',paddingTop:20}}>
-            <Text  style={{padding:10,fontSize:20,fontWeight:'bold'}}>Provinces</Text>
 
             <View  style={{flex:1,flexDirection:'row',padding:5}}>
 

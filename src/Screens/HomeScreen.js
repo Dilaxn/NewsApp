@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import Categories from "../Components/Categories";
 import TrendingNews from "../Components/TrendingNews";
 import {View, Text, ActivityIndicator, TouchableOpacity, ScrollView, Image, Dimensions, Button} from 'react-native';
@@ -11,25 +11,43 @@ import Top from "../Components/Top";
 
 const deviceHeight =Dimensions.get('window').height;
 const deviceWidth =Dimensions.get('window').width;
-class HomeScreen extends Component {
-    state = {
-        news: []
-    }
+function HomeScreen(props) {
 
-    componentDidMount() {
-        fetch('https://newsapi.org/v2/top-headlines?country=in&apiKey=db00e5c555514d6ca6d00fb0513d40aa').then(
-            res => res.json()
-        ).then(response => {
-            this.setState({
-                news: response.articles
-            })
-            console.log(this.state.news.length)
-        }).catch(err => console.error(err))
-    }
 
-    render() {
-        const { navigation } = this.props;
-        console.log(this.props)
+    const [news, setNews] = useState([]);
+const [type,setType] = useState('WorldNews');
+    useEffect(()=>{
+
+        const unsubscribe = navigation.addListener('focus', () => {
+            if(props.route.params.itemId==='WorldNews'){
+                fetch('https://newsapi.org/v2/top-headlines?country=in&apiKey=db00e5c555514d6ca6d00fb0513d40aa').then(
+                    res => res.json()
+                ).then(response => {
+                    setNews(response.articles)
+
+                    console.log(news.length)
+                }).catch(err => console.error(err))
+            }
+            else{
+                fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=db00e5c555514d6ca6d00fb0513d40aa').then(
+                    res => res.json()
+                ).then(response => {
+                    setNews(response.articles)
+
+                    console.log(news.length)
+                }).catch(err => console.error(err))
+            }
+            console.log(props.route.params.itemId)
+            setType(props.route.params.itemId)
+        });
+        return unsubscribe;
+
+    },[props])
+
+
+
+        const { navigation } = props;
+
         return(
             <View style={{backgroundColor:'white'}} >
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -38,11 +56,15 @@ class HomeScreen extends Component {
                         title="Go to notifications"
                     />
                 </View>
-                <Categories style={{height: 0.3*deviceHeight}} navigation={this.props.navigation}/>
+                {
+                    (type==='WorldNews')?<Categories style={{height: 0.3*deviceHeight}} navigation={props.navigation}/>:null
+                }
+
+
                 <ScrollView >
                     <Text style={{margin:10,fontSize:40,fontWeight:"bold"}}>Explore Today's World News</Text>
 
-                    <TrendingNews o navigation={this.props.navigation}/>
+                    <TrendingNews o navigation={props.navigation}/>
 
 {/*<Top o navigation={this.props.navigation}/>*/}
                     <Text style={{margin:10,fontSize:20,fontWeight:"bold"}}>Explore Today's Local News</Text>
@@ -50,14 +72,14 @@ class HomeScreen extends Component {
                     {/*<ProvinceNews o navigation={this.props.navigation}/>*/}
                 <View>
                     {
-                        this.state.news.length === 0 ?
+                        news.length === 0 ?
                             (<ActivityIndicator size="large" color="#0000ff" style={{height:deviceHeight,width:deviceWidth,alignItems:'center'}} />) : (
                                 <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
                                     {
-                                        this.state.news.map((news, index) => (
+                                        news.map((news, index) => (
                                             news.urlToImage ?
                                                 <TouchableOpacity key={index}
-                                                                  onPress={()=>this.props.navigation.navigate('WebSite',{
+                                                                  onPress={()=>props.navigation.navigate('WebSite',{
                                                                       url:news.url,
                                                                       img:news.urlToImage
                                                                   })}
@@ -98,6 +120,6 @@ class HomeScreen extends Component {
 
             </View>
         );
-    }
+
 }
 export default HomeScreen;
