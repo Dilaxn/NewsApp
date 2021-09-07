@@ -106,7 +106,7 @@ function MyDrawer() {
             <Drawer.Screen name="Interests" component={MyInterests} />
             <Drawer.Screen name="Provinces" component={ProvinceScreen} />
 
-            <Drawer.Screen name="Profile" component={Profile}/>
+            <Drawer.Screen name="Profile" component={ProfileScreen}/>
             <Drawer.Screen name="Feedback" component={Provinces}/>
             <Drawer.Screen name="Contact Us" component={Provinces}/>
         </Drawer.Navigator>
@@ -166,7 +166,7 @@ function StachNav(props) {
             }} component={WebViewComponent}/>
 
 
-            <Stack.Screen name='Provinces' options={{
+            <Stack.Screen name='Province' options={{
                 headerLeft: () => (
                     <View style={{paddingRight: 5}}>
                         <Icon
@@ -201,6 +201,31 @@ function ProvinceScreen(props) {
                     </View>
                 ),
             }} component={Provinces} initialParams={{ itemId: x }}/>
+
+
+        </Stack.Navigator>
+    )
+        ;
+}
+
+//Profile Screen
+function ProfileScreen(props) {
+    console.log(props.route.name)
+    let x=props.route.name;
+    return (
+        <Stack.Navigator>
+
+            <Stack.Screen name='Profile' options={{
+                headerLeft: () => (
+                    <View style={{paddingRight: 5}}>
+                        <Icon
+                            name='bars'
+                            type='font-awesome'
+                            color='#000'
+                            onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}/>
+                    </View>
+                ),
+            }} component={Profile} initialParams={{ itemId: x }}/>
 
 
         </Stack.Navigator>
