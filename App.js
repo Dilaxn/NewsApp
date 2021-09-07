@@ -103,7 +103,7 @@ function MyDrawer() {
             <Drawer.Screen name="My Interests" component={Provinces}/>
             <Drawer.Screen name="WorldNews"  component={StachNav}/>
             <Drawer.Screen name="LocalNews" component={StachNav} />
-            <Drawer.Screen name="Interests" component={MyInterests} />
+            <Drawer.Screen name="Interest" component={MyInterest} />
             <Drawer.Screen name="Provinces" component={ProvinceScreen} />
 
             <Drawer.Screen name="Profile" component={ProfileScreen}/>
@@ -226,6 +226,31 @@ function ProfileScreen(props) {
                     </View>
                 ),
             }} component={Profile} initialParams={{ itemId: x }}/>
+
+
+        </Stack.Navigator>
+    )
+        ;
+}
+
+//Interests Screen
+function MyInterest(props) {
+    console.log(props.route.name)
+    let x=props.route.name;
+    return (
+        <Stack.Navigator>
+
+            <Stack.Screen name='Interests' options={{
+                headerLeft: () => (
+                    <View style={{paddingRight: 5}}>
+                        <Icon
+                            name='bars'
+                            type='font-awesome'
+                            color='#000'
+                            onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}/>
+                    </View>
+                ),
+            }} component={MyInterests} initialParams={{ itemId: x }}/>
 
 
         </Stack.Navigator>
