@@ -29,6 +29,7 @@ export default function MyInterests(props) {
     const [cat1, setCat1] = useState([]);
     const [cat2, setCat2] = useState([]);
     const [cat3, setCat3] = useState([]);
+    let bgCol1 = 'white'
 
     const [type, setType] = useState('WorldNews');
     useEffect(() => {
@@ -74,20 +75,19 @@ export default function MyInterests(props) {
                 onChange={(e) => setIndex(e)}
                 indicatorStyle={{
                     backgroundColor: 'white',
-                    height: 3,
+                    height: 2,
+
                 }}
+
                 style={{backgroundColor:'white'}}
 
 
             >
                 <Tab.Item
                     title="Recent"
-                    titleStyle={{fontSize: 12,color:'black'}}
+                    titleStyle={{width:'100%',fontSize: 12,color:'black',backgroundColor:bgCol1}}
                    active={{backgroundColor:'red'}}
-                    onFocus={()=>{
-                        return(   <Text>hello</Text>)
-
-                    }}
+                    onFocus={bgCol1='red'}
                     // icon={{ name: 'timer', type: 'ionicon', color: 'white' }}
                 />
                 <Tab.Item
@@ -102,7 +102,7 @@ export default function MyInterests(props) {
             </Tab>
 
             <TabView value={index} onChange={setIndex} animationType="timing">
-                <TabView.Item style={{width: '100%'}} onMoveShouldSetResponder={(e) => e.stopPropagation()} >
+                <TabView.Item  style={{width: '100%'}} onMoveShouldSetResponder={(e) => e.stopPropagation()} >
                     <View style={{backgroundColor: 'white', flex: 1}}>
                         {
                             cat1.length === 0 ?

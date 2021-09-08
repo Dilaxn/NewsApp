@@ -22,6 +22,7 @@ import GetProvince from "./src/Screens/GetProvince";
 import Profile from "./src/Components/Profile";
 import LocalNews from "./src/Components/LocalNews";
 import MyInterests from "./src/Components/MyInterests";
+import Interest from "./src/Components/Interest";
 
 
 function Feed({navigation}) {
@@ -100,7 +101,7 @@ function MyDrawer() {
         }}
                           drawerContent={(props) => <CustomDrawerContent labelStyle={{fontSize: 20}} {...props} />}
         >
-            <Drawer.Screen name="My Interests" component={Provinces}/>
+            <Drawer.Screen name="My Interests" component={Interest}/>
             <Drawer.Screen name="WorldNews"  component={StachNav}/>
             <Drawer.Screen name="LocalNews" component={StachNav} />
             <Drawer.Screen name="Interest" component={MyInterest} />
