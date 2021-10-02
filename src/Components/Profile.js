@@ -19,7 +19,7 @@ function Profile(props)  {
     return(
         <View style={{flex:1}}>
 
-            <View style={{height:deviceHeight/3, backgroundImage:profileBG}}   >
+            <View style={{height:deviceHeight/3,}}   >
                 <Image style={{height:deviceHeight/3,width:deviceWidth}} source={profileBG} resizeMode="cover"/>
             </View>
             <View style={{flex:1, marginTop:-deviceHeight/8,marginBottom:-deviceHeight/8,marginLeft:10,marginRight:10,borderRadius:40}}>

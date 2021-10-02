@@ -23,6 +23,8 @@ import Profile from "./src/Components/Profile";
 import LocalNews from "./src/Components/LocalNews";
 import MyInterests from "./src/Components/MyInterests";
 import Interest from "./src/Components/Interest";
+import Channels from "./src/Components/Channels";
+
 
 
 function Feed({navigation}) {
@@ -106,6 +108,7 @@ function MyDrawer() {
             <Drawer.Screen name="LocalNews" component={StachNav} />
             <Drawer.Screen name="Interest" component={MyInterest} />
             <Drawer.Screen name="Provinces" component={ProvinceScreen} />
+            <Drawer.Screen name="Channels" component={Channels} />
 
             <Drawer.Screen name="Profile" component={ProfileScreen}/>
             <Drawer.Screen name="Feedback" component={Provinces}/>
