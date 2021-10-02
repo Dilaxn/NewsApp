@@ -85,18 +85,19 @@ export default function MyInterests(props) {
             >
                 <Tab.Item
                     title="Recent"
-                    titleStyle={{width:'100%',fontSize: 12,color:'black',backgroundColor:bgCol1}}
+                    titleStyle={{width:'100%',fontSize: 14,color:'black'}}
+                    onPress={{backgroundColor:'red'}}
                    active={{backgroundColor:'red'}}
                     onFocus={bgCol1='red'}
                     // icon={{ name: 'timer', type: 'ionicon', color: 'white' }}
                 />
                 <Tab.Item
                     title="favorite"
-                    titleStyle={{fontSize: 12,color:'black'}}
+                    titleStyle={{fontSize: 14,color:'black'}}
                 />
                 <Tab.Item
                     title="cart"
-                    titleStyle={{fontSize: 12,color:'black'}}
+                    titleStyle={{fontSize: 14,color:'black'}}
                 />
 
             </Tab>

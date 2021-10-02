@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, ActivityIndicator, TouchableOpacity, ScrollView, Image, Dimensions, Button} from 'react-native';
+import {View, Text, ActivityIndicator, TouchableOpacity, ScrollView, Image, Dimensions, ImageBackground} from 'react-native';
 import config from "../../config/config";
 import western from "../Images/Provinces/western.jpg"
 import central from "../Images/Provinces/central.jpg"
@@ -12,13 +12,16 @@ import {WebView} from "react-native-webview";
 import Avatar from "../Images/Avatar.png";
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
+import profileBG from '../Images/profileBG.jpg';
 
 function Profile(props)  {
 
     return(
         <View style={{flex:1}}>
 
-            <View style={{height:deviceHeight/3,backgroundColor:'black'}} />
+            <View style={{height:deviceHeight/3, backgroundImage:profileBG}}   >
+                <Image style={{height:deviceHeight/3,width:deviceWidth}} source={profileBG} resizeMode="cover"/>
+            </View>
             <View style={{flex:1, marginTop:-deviceHeight/8,marginBottom:-deviceHeight/8,marginLeft:10,marginRight:10,borderRadius:40}}>
                <View style={{backgroundColor:'white',height:deviceHeight/2,margin:20,borderRadius:20}}>
                    <View style={{flex: 2}} alignItems="center">
