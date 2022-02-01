@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Dimensions, StyleSheet, Text, View} from "react-native";
+import {Dimensions, SafeAreaView, StyleSheet, Text, View} from "react-native";
 
 import { SliderBox } from "react-native-image-slider-box";
 const deviceHeight = Dimensions.get('window').height;
@@ -19,8 +19,9 @@ export default class App extends Component {
 
     render() {
         return (
+
             <View style={styles.container}>
-                <SliderBox style={{height:deviceHeight}}
+                <SliderBox style={{height:"100%"}}
                     images={this.state.images}
                     onCurrentImagePressed={index =>{
                         console.warn(`image ${index} pressed`)
@@ -34,12 +35,15 @@ export default class App extends Component {
                            onClick={console.log("hello")}
                 />
             </View>
+
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        padding:20,
+
     }
 });

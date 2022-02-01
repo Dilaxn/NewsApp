@@ -1,17 +1,27 @@
 import React, {Component} from 'react';
-import {View, Text, ActivityIndicator, TouchableOpacity, ScrollView, Image, Dimensions} from 'react-native';
+import {
+    View,
+    Text,
+    ActivityIndicator,
+    TouchableOpacity,
+    ScrollView,
+    Image,
+    Dimensions,
+    SafeAreaView
+} from 'react-native';
 import config from "../../config/config";
-
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
+
+
 
 class TrendingNews extends Component {
     state = {
         news: []
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=db00e5c555514d6ca6d00fb0513d40aa').then(
             res => res.json()
         ).then(response => {
@@ -20,10 +30,12 @@ class TrendingNews extends Component {
             })
             console.log(this.state.news.length)
         }).catch(err => console.error(err))
+
     }
 
     render() {
         return (
+            <SafeAreaView>
             <View style={{backgroundColor: 'white'}}>
                 {/*<Text style={{fontSize:20}}>Heading1</Text>*/}
                 {
@@ -84,7 +96,7 @@ fontWeight:"bold",flex:1,
                                                             textAlign: 'center'
                                                         }}>{news.title}</Text>
                                                             <View style={{position:'absolute', flexDirection: 'row',width:deviceWidth-170}}>
-                                                                <Text style={{fontFamily:"Times New Roman",paddingLeft:10,fontWeight:'400',color:'white',}}>Channel</Text>
+                                                                <Text style={{fontFamily:"OpenSans-Italic",paddingLeft:10,color:'white',}}>Channel</Text>
                                                                 <Text style={{fontFamily:"Times New Roman",fontWeight:'400',textAlign:"right",color:'white',}}>   |    21 Aug 2021</Text>
                                                             </View>
                                                         </View>
@@ -101,6 +113,7 @@ fontWeight:"bold",flex:1,
 
 
             </View>
+            </SafeAreaView>
         );
     }
 }

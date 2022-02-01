@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useContext, useEffect, useState} from 'react';
 import {View, Text, ActivityIndicator, TouchableOpacity, ScrollView, Image, Dimensions, ImageBackground} from 'react-native';
 import config from "../../config/config";
 import western from "../Images/Provinces/western.jpg"
@@ -10,12 +10,19 @@ import {Icon} from "react-native-elements";
 import {DrawerActions} from "@react-navigation/native";
 import {WebView} from "react-native-webview";
 import Avatar from "../Images/Avatar.png";
+import ArimaMadurai from "../../assets/fonts/ArimaMadurai-Regular.ttf"
+
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 import profileBG from '../Images/profileBG.jpg';
 
 function Profile(props)  {
 
+    const [state, setState] = useState(0);
+useEffect(() => {
+
+},[])
+    // useContext(() => {})
     return(
         <View style={{flex:1}}>
 
@@ -44,7 +51,7 @@ marginTop:-60,
                        </TouchableOpacity>
                        <View>
                            <TouchableOpacity  style={{borderRadius:30,borderWidth:0, borderColor:'black', paddingLeft:15,paddingRight:15,paddingTop:5,paddingBottom:5,margin:20, width:'80%',justifyContent:'center',alignItems:'center',backgroundColor:'black'}} onPress={()=> console.log('clicked')} >
-                               <Text style={{fontSize:20,color:'white',fontWeight:"200"}}>
+                               <Text style={{fontSize:20,color:'white',fontWeight:"200",fontFamily:"ArimaMadurai-Regular"}}>
                                    Sign Out
                                </Text>
                            </TouchableOpacity>

@@ -26,8 +26,15 @@ import Interest from "./src/Components/Interest";
 import Channels from "./src/Components/Channels";
 
 
+import {useEffect} from "react";
+
+
+
+
 
 function Feed({navigation}) {
+
+
     return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Text>Feed Screen</Text>
@@ -263,6 +270,7 @@ function MyInterest(props) {
 }
 
 export default function App() {
+
     return (
         <NavigationContainer>
             <MyDrawer/>
